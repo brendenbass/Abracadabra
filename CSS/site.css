@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #1d5888;
+    --primary-color: #bc9c62;
     --secondary-color: #ff993b;
     --dark-color: #292929;
     --white-color: #e7e7e7;
@@ -7,6 +7,7 @@
 
 body {
     color: var(--dark-color);
+    background-color: #ffffff;
 }
 
 nav {
@@ -52,7 +53,7 @@ footer .social > a:hover {
 }
 
 .checklist > li i {
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 code[class*="language-"],
@@ -64,10 +65,13 @@ code[class*="language-"],
         }
 
 .crop {
-    margin-top: -120px;
-    margin-bottom: -140px;
+    margin-top: -95px;
+    margin-bottom: -120px;
 }
 
 main > .container {
     padding: 60px 15px 0;
+}
+.lead {
+    color: black;
 }
