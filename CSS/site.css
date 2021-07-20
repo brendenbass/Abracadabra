@@ -33,7 +33,7 @@ footer .social > a {
 
 footer .social > a:hover {
     opacity: 0.9;
-    color: #0d6efd;
+    color: var(--primary-color);
 }
 
 .bsicon {

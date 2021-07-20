@@ -47,8 +47,50 @@
 </nav>
 <!-- === Main Section === -->
 <main class="flex-shrink-0">
-    <div class="container">
-
+    <div class="container mt-3 mt-lg-5 py-5">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col col-lg-5 border-end border-2">
+                <h1>ABRACADABRA:<br> A Coding Project</h1>
+                <h4 class="lead">Bibbity bobbity boop! A javascript coding exercise using loops. The app prints numbers 1 through 100, but multiples of 3 display <b>"Abra"</b> and multiples of 5 display <b>"cadabra"</b>. Multiples of both numbers display <b>"Abracadabra"</b>.</h4>
+                <h2 class="mt-4">Instructions</h2>
+                <p>Enter a "Abra" and a "cadabra value. Press the button and the values will appear.</p>
+            </div>
+            <div class="col col-lg-7">
+                <h5>Enter Values</h5>
+                <form class="row row-cols-1 row-cols-lg-2">
+                    <div class="col">
+                        <input type="number" class="form-control" value=3 id=firstValue placeholder="First Value" aria-label="First Value">
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" value=5 id=lastValue placeholder="Last Value" aria-label="Last Value">
+                    </div>
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" id=btnSubmit class="btn btn-dark btn-1-lg">Start the Magic!</button>
+                    </div>
+                </form>
+                <h3 class="mt-5">Results</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 <!-- === Footer Section === -->
@@ -81,5 +123,6 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="/JS/site.js"></script>
+    <script>document.getElementById("btnSubmit").addEventListener("click",getValues);</script>
 </body>
 </html>
