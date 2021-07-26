@@ -56,6 +56,19 @@ footer .social > a:hover {
     color: var(--primary-color);
 }
 
+.Abra {
+    color: darkblue;
+}
+
+.cadabra {
+    color: darkgreen;
+}
+
+.Abracadabra {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 code[class*="language-"],
         pre[class*="language-"] {
             white-space: pre-wrap;
