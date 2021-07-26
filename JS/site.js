@@ -19,6 +19,8 @@ function getValues(){
     }
 }
 
+
+
 function abraCadabra(abraValue,cadabraValue) {
 
     let returnArray = [];
@@ -45,6 +47,8 @@ function abraCadabra(abraValue,cadabraValue) {
     }
     return returnArray;
 }
+
+
 
 //loop over the array and create a tablerow for each item
 function displayData(acArray) {
