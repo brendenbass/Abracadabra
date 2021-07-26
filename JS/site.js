@@ -11,7 +11,7 @@ function getValues(){
 
     if(Number.isInteger(abraValue) && Number.isInteger(cadabraValue)) {
         //call abracadabra
-        let acArray = abraCadabra(abraValue,cadabraValue);
+        let acArray = abraCadabraC(abraValue,cadabraValue);
         //call displayData and write the values to the screen
         displayData(acArray);
     } else {
@@ -48,7 +48,50 @@ function abraCadabra(abraValue,cadabraValue) {
     return returnArray;
 }
 
+function abraCadabraB(abraValue, cadabraValue){
 
+    let returnArray = [];
+    let Abra = false;
+    let Cadabra = false;
+
+    for (let i = 1; i < 100; i++) {
+        
+        Abra = i % abraValue == 0;
+        Cadabra = i % cadabraValue == 0;
+
+        switch(true)
+        {
+            case Abra && Cadabra:{
+                returnArray.push('Abracadabra');
+                break;
+            }
+            case Abra:{
+                returnArray.push('Abra');
+                break;
+            }
+            case Cadabra:{
+                returnArray.push('Cadabra');
+                break;
+            }
+            default:{
+                returnArray.push(i);
+                break;
+            }
+        }
+    }
+
+    return returnArray;
+}
+
+function abraCadabraC(abraValue, cadabraValue){
+    let returnArray = [];
+
+    for (let i = 1; i <= 100; i++) {
+        let value = ((i % abraValue == 0 ? 'Abra' : '') + (i % cadabraValue == 0 ? 'cadabra' : '') || i );
+        returnArray.push(value);
+    }
+    return returnArray;
+}
 
 //loop over the array and create a tablerow for each item
 function displayData(acArray) {
