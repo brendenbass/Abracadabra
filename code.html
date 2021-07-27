@@ -221,7 +221,8 @@
                 <br><b>.importNode</b> is a property that allows us to take a fragment of html from another document. Having <b>true</b> at the end is important. It allows us to also grab the child elements of the HTML element we have selected.
                 <br>The variable <b>rowCols</b> is declared and set equal to the <b>td</b> element within our <b>tableRow</b> variable. This means that when we use <b>rowCols</b> and pass in an index as a parameter, (for example, rowCols[0]) we can access with precision each individual <b>td</b> element within our HTML template.
                 <br>Let's break down one these pairs of statements. Look at line 112-113. rowCols[0] grabs the first <b>td</b> element. .classList.add(acArray[index]) allows us to add a class to our <b>td</b> element from our <b>acArray</b> at whatever the current index is. Since we have named our classes (in <b>site.css</b>) the same name as our strings: "Abra," "Cadabra," and "Abracadabra," we can use these array strings as class names. Okay, so we targeted the first <b>td</b> element, and we inserted a class with one of the same names as one of the strings in our array.
-                <br></p>
+                <br>Check out line 113. rowCols[0] again grabs the first <b>td</b> element, but this time, using <b>.textContent</b>, we will place text into the <b>td</b> element. This text content comes from our array <b>acArray</b>, at whichever index we are currently using.
+                <br>Finally, tableBody.appendChild(tableRow) (line 127) takes our <b>tableRow</b> we have created with our new <b>td</b> elements, and it places it at the end of <b>tableBody</b>.</p>
             </div>
         </div>
     </div>
