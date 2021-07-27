@@ -53,17 +53,169 @@
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello World
-                        function HelloWorld(){
-                            alert("hello World");
+                    //get values from user input
+                    //starts or controller function
+                    function getValues(){
+                        let abraValue = document.getElementById("startValue").value;
+                        let cadabraValue = document.getElementById("endValue").value;
+                    
+                        //validate input to make sure that input is numbers
+                        //parse input for integers
+                        abraValue = parseInt(abraValue);
+                        cadabraValue = parseInt(cadabraValue);
+                    
+                        if(Number.isInteger(abraValue) && Number.isInteger(cadabraValue)) {
+                            //call abracadabra
+                            let acArray = abraCadabraC(abraValue,cadabraValue);
+                            //call displayData and write the values to the screen
+                            displayData(acArray);
+                        } else {
+                            alert("You must enter integers")
                         }
+                    }
+                    
+                    //Possible functions one can use to "abracadabra" (original abraCadabra, B, or C)
+                    function abraCadabra(abraValue,cadabraValue) {
+                    
+                        let returnArray = [];
+                    
+                        //loop from 1 to 100
+                        for (let index = 1; index <= 100; index++) {
+                            //need to check current integer in three steps
+                            //(1) Check to see if divisible by both (3 and 5); if so, push Abracadabra.
+                            if (index % abraValue == 0 && index % cadabraValue == 0) {
+                                returnArray.push("Abracadabra");
+                                }
+                            //(2) Check to see if divisible by abra value (3); if so, push Abra.
+                            else if (index % abraValue == 0) {
+                                returnArray.push("Abra");
+                                }
+                            //(3) Check to see if divisible by cadabra value (5); if so, push Cadabra.
+                            else if (index % cadabraValue == 0) {
+                                returnArray.push("cadabra");
+                                }
+                            //if divisible by none, push the number into the array
+                            else {
+                                returnArray.push(index);
+                                }
+                        }
+                        return returnArray;
+                    }
+                    
+                    function abraCadabraB(abraValue, cadabraValue){
+                    
+                        let returnArray = [];
+                        let Abra = false;
+                        let Cadabra = false;
+                    
+                        for (let i = 1; i < 100; i++) {
+                            
+                            Abra = i % abraValue == 0;
+                            Cadabra = i % cadabraValue == 0;
+                    
+                            switch(true)
+                            {
+                                case Abra && Cadabra:{
+                                    returnArray.push('Abracadabra');
+                                    break;
+                                }
+                                case Abra:{
+                                    returnArray.push('Abra');
+                                    break;
+                                }
+                                case Cadabra:{
+                                    returnArray.push('Cadabra');
+                                    break;
+                                }
+                                default:{
+                                    returnArray.push(i);
+                                    break;
+                                }
+                            }
+                        }
+                    
+                        return returnArray;
+                    }
+                    
+                    function abraCadabraC(abraValue, cadabraValue){
+                        let returnArray = [];
+                    
+                        for (let i = 1; i <= 100; i++) {
+                            let value = ((i % abraValue == 0 ? 'Abra' : '') + (i % cadabraValue == 0 ? 'cadabra' : '') || i );
+                            returnArray.push(value);
+                        }
+                        return returnArray;
+                    }
+                    
+                    //loop over the array and create a tablerow for each item
+                    function displayData(acArray) {
+                    
+                        //get the table body element from the page
+                        let tableBody = document.getElementById("results");
+                    
+                        //get the template itself
+                        let templateRow = document.getElementById("fbTemplate");
+                    
+                        //clear the table
+                        tableBody.innerHTML = "";
+                    
+                        for (let index = 0; index < acArray.length; index+= 5) {
+                            let tableRow = document.importNode(templateRow.content, true);
+                            
+                            //grab the td to put into array
+                            let rowCols = tableRow.querySelectorAll("td");
+                            rowCols[0].classList.add(acArray[index]);
+                            rowCols[0].textContent = acArray[index];
+                    
+                            rowCols[1].classList.add(acArray[index+1]);
+                            rowCols[1].textContent = acArray[index+1];
+                    
+                            rowCols[2].classList.add(acArray[index+2]);
+                            rowCols[2].textContent = acArray[index+2];
+                    
+                            rowCols[3].classList.add(acArray[index+3]);
+                            rowCols[3].textContent = acArray[index+3];
+                    
+                            rowCols[4].classList.add(acArray[index+4]);
+                            rowCols[4].textContent = acArray[index+4];
+                    
+                            tableBody.appendChild(tableRow);
+                        }
+                    
+                        //add all the rows to the table
+                    }
+
+                    //inline script from app.html
+                    <script>document.getElementById("btnSubmit").addEventListener("click",getValues);</script>
+
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The Code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <p>The code shown contains all of the Javascript used in this project. Most of the Javascript is contained inside of an external script, <b>site.js</b>. One line of Javascript runs inline inside of <b>app.html</b>. A few key pieces of it are explained below.</p>
+                <h5>getValues</h5>
+                <p><b>getValues</b> is a function that is triggered when the "Start the Magic!" button is clicked on the app webpage. (See the bottom of the Javascript.)
+                <br>It first declares two variables, <b>abraValue</b> and <b>cadabraValue</b>. It pulls both of those from the two html number inputs which can be changed. They are set initially to 3 and 5.
+                <br>The function then parses <b>abraValue</b> and <b>cadabraValue</b> to change the strings from the two inputs into integers.
+                <br>An <b>if/else</b> statement is created and checks to see if both <b>abraValue</b> and <b>cadabraValue</b> are integers. If so, the variable <b>acArray</b>, which is set equal to one of our three possible Abracadabra functions, is declared. <b>abraValue</b> and <b>cadabraValue</b> are passed in as parameters. If both of the inputs are not integers, an alert is shown.</p>
+                <h5>The Abracadabra Functions</h5>
+                <p>I will not attempt to explain all three of these in great detail, but I will explain at a high level what their intent is. (I will explain the last function as it is fairly interesting.)
+                <br>All three of these functions declare an empty array, <b>returnArray</b>.
+                <br>All three of these functions use a <b>for loop</b> to go from 1 to 100. As it loops, the function will change out numbers with "Abra," "Cadabra," or "Abracadabra." Or it will keep the number if certain parameters are not met. Then, <b>returnArray</b> is returned at the end. It will be used when its function <b>acArray</b> is passed into another function, <b>displayData</b>.
+                <br><br><b>abraCadabraC:</b><br> This function uses <b>abraValue</b> and <b>cadabraValue</b> as parameters. It declares a variable called <b>returnArray</b> which is set equal to an empty array.<br>
+                A <b>for loop</b> is created that loops from 1 to 100, but the statement that it uses is quite a bit different from the other functions.
+                <br>The statement it uses is called a <b>conditional (ternary) operator</b>. Ternary means composed of three parts, which is how this statement is composed. In a ternary operator, you have three things that show up: a condition followed by a question mark(?), an expression followed by a colon(:) to execute if the condition is truthy, and an expression following that to execute if the condition is falsy.
+                <br>In our ternary operator, we have two conditions with each condition having a truthy and falsy expression able to be executed. Finally at the end, we have an <b>OR</b> (||) operator that will be triggered if none of the conditions are true.<br>
+                So, for our first condition, if <b>i</b> (index) divided by our <b>abraValue</b> returns a remainder that is equal to 0, then the string "Abra" is added to the variable <b>value</b>. If not, an empty string is added. (basically nothing)
+                <br>For our second condition, if <b>i</b> (index) divided by our <b>cadabraValue</b> returns a remainder that is equal to 0, then the string "Cadabra" is added to the variable value. If not, an empty string is added. (basically nothing)
+                <br>Realize that if both conditions are true, "Abra" and "cadabra" will both be added as strings to <b>value</b> which will result in a string containing "Abracadabra." And if neither are true, then our <b>OR</b> (||) operator will be triggered and the <b>i</b> (index) will be returned.
+                <br>After the loop finishes, then the variable <b>returnArray</b> is returned.
+                </p>
+                <h5>displayData</h5>
+                <p>Now that we have all the strings and indexes we need within our array <b>returnArray</b> which is contained in our function <b>abraCadabraC</b>, remember that the function <b>acArray</b> has been set equal to <b>abraCadabraC</b> back up in our <b>getValues</b> function. Basically, that just means we have access to our array within <b>displayData</b> by using <b>acArray</b> as the parameter. (as seen below) <br>function displayData(acArray)
+                <br>Two variables, <b>tableBody</b> and <b>templateRow</b>, are declared and set equal to html elements within <b>app.html</b>. We will use these variables to alter these html elements.
+                <br>Then we use the variable <b>tableBody</b> and the <b>.innerHTML</b> property to set our HTML table equal to an empty string. This is important so that multiple tables do not appear if we want to use the app more than once.
+                <br>One last loop...</p>
             </div>
         </div>
     </div>
